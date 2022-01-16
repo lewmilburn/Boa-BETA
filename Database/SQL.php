@@ -11,11 +11,13 @@ class SQL extends Connect
     /**
      * @var mysqli
      */
-    private $connect;
+    private mysqli $connect;
 
-    public function __construct($hostname, $database, $username, $password, $port = null, $socket = null)
+    public function __construct()
     {
-        $this->connect = new mysqli($hostname, $username, $password, $database, $port, $socket);
+        global $settings;
+        $this->connect = new mysqli($settings['db_hostname'], $settings['db_username'], $settings['db_password'], $settings['db_database'], $settings['db_port'], $settings['db_socket']);
+        return $this->connect;
     }
 
     public function Query($string, $mode = 'NONE') {
@@ -37,5 +39,9 @@ class SQL extends Connect
         }
 
         return '$mode defined incorrectly.';
+    }
+
+    public function Escape($string): String {
+        return $this->connect->escape_string($string);
     }
 }

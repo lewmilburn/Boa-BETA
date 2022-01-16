@@ -2,10 +2,13 @@
 
 namespace Boa\Security;
 
+use Boa\Connect;
+use Boa\Database\SQL;
+
 class Security extends Connect
 {
-    public function CheckData($data) {
-        $db = new SQL("localhost", "database", "pass", "user");
-        return $db->mysqli_escape_string($data);
+    public function CheckData($data): String {
+        $db = new SQL();
+        return $db->Escape($data);
     }
 }
