@@ -15,7 +15,8 @@ class Connect
             'db_password' => '',
             'db_database' => '',
             'db_port' => NULL,
-            'db_socket' => NULL
+            'db_socket' => NULL,
+            'db_security' => true
         );
     }
 }

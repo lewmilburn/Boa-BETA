@@ -23,7 +23,11 @@ class SQL extends Connect
     public function Query($string, $mode = 'NONE') {
         $conn = $this->connect;
 
-        $string = $conn->real_escape_string($string);
+        global $settings;
+        if ($settings['db_security']) {
+            $string = $this->Escape($string);
+        }
+
         $result = $conn->query($string);
 
         switch ($mode){
