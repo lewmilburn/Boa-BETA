@@ -2,10 +2,10 @@
 
 namespace Boa\Security;
 
-use Boa\Connect;
+use Boa\App;
 use Boa\Database\SQL;
 
-class Security extends Connect
+class Security extends App
 {
     public function CheckData($data): String {
         $db = new SQL();

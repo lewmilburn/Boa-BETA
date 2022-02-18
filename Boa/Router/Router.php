@@ -10,7 +10,10 @@ namespace Boa\Router;
 /**
  * Class Router.
  */
-class Router extends Connect
+
+use Boa\App;
+
+class Router extends App
 {
     private $afterRoutes = [];
     private $beforeRoutes = [];
