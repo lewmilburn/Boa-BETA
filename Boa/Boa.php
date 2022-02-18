@@ -2,14 +2,15 @@
 
 namespace Boa;
 
-class Connect
-{
-    public string $settings;
+class App {
 
     public function __construct()
     {
-        global $settings;
-        $settings = array (
+        $settings = $this->config();
+    }
+
+    public function config(): array {
+        return array (
             'db_hostname' => '',
             'db_username' => '',
             'db_password' => '',

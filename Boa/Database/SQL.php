@@ -2,10 +2,10 @@
 
 namespace Boa\Database;
 
-use Boa\Connect;
+use Boa\App;
 use mysqli;
 
-class SQL extends Connect
+class SQL extends App
 {
 
     /**
@@ -15,6 +15,7 @@ class SQL extends Connect
 
     public function __construct()
     {
+        parent::__construct();
         global $settings;
         $this->connect = new mysqli($settings['db_hostname'], $settings['db_username'], $settings['db_password'], $settings['db_database'], $settings['db_port'], $settings['db_socket']);
         return $this->connect;

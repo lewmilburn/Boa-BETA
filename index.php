@@ -1,10 +1,9 @@
 <?php
+include __DIR__.'/Boa/Boa.php';
 
-//use Boa\Database\SQL;
-//use Boa\Security\Encryption;
+use Boa\App;
 
-//$sql = new SQL("localhost", "database", "pass", "user");
-//$sql->query("SELECT * FROM users", "ALL");
+$boa = new App();
 
-//$Encryption = new Encryption();
-//echo $Encryption->hash('Test');
+global $settings;
+var_dump($settings);
