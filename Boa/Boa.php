@@ -19,10 +19,12 @@ class App {
             'module_security' => true,
             'module_security_encryption' => true,
             // Database Settings
+            'db_driver' => '',
             'db_hostname' => '',
             'db_username' => '',
             'db_password' => '',
             'db_database' => '',
+            'db_charset' => '',
             'db_port' => NULL,
             'db_socket' => NULL,
             'db_security' => true,
