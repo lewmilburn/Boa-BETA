@@ -21,15 +21,15 @@ class PDODB extends App
         $Boa = new App();
         $settings = $Boa->Settings();
 
-        $dsn = "mysql:host=".$settings['db_hostname'].";dbname=".$settings['db_database'].";charset=".$settings['db_charset'];
+        $dsn = "mysql:host=".$settings['database_hostname'].";dbname=".$settings['database_database'].";charset=".$settings['database_charset'];
         $this->pdodb = new PDO($dsn);
     }
 
     public function Query($string, $driver = 'NONE') {
-
+        return null;
     }
 
     public function Prepare($string) {
-
+        return null;
     }
 }

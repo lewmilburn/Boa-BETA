@@ -21,7 +21,7 @@ class SQL extends App
         $settings = $Boa->Settings();
 
         // Connect to the database.
-        $this->connect = new mysqli($this->settings['db_hostname'], $this->settings['db_username'], $this->settings['db_password'], $this->settings['db_database'], $this->settings['db_port'], $this->settings['db_socket']);
+        $this->connect = new mysqli($this->settings['database_hostname'], $this->settings['database_username'], $this->settings['database_password'], $this->settings['database_database'], $this->settings['database_port'], $this->settings['database_socket']);
 
         // Return the conection.
         return $this->connect;
@@ -30,7 +30,7 @@ class SQL extends App
     public function Query($string, $mode = 'NONE') {
         $conn = $this->connect;
 
-        if ($this->settings['db_security']) {
+        if ($this->settings['database_security']) {
             $string = $this->Escape($string);
         }
 

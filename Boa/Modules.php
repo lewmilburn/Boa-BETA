@@ -9,6 +9,10 @@ $settings = $boa->Settings();
 require_once __DIR__.'/ErrorHandler/ErrorHandler.php';
 require_once __DIR__.'/ErrorHandler/WarningHandler.php';
 
+if ($settings['module_authentication_portal']) {
+    require_once __DIR__.'/Authentication/Portal.php';
+}
+
 if ($settings['module_database_pdo']) {
     require_once __DIR__.'/Database/PDODB.php';
 }
