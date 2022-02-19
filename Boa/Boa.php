@@ -45,8 +45,8 @@ class App {
 
     public function __construct()
     {
-        $this->settings = $this->Settings();
-        $this->Autoload();
+        $this->settings = $this->Settings(); // Register settings
+        $this->Autoload(); // Register modules
     }
 
     public function Autoload() {
@@ -54,6 +54,7 @@ class App {
         $modulesJSON = file_get_contents(__DIR__.'/modules.json');
         $modulesJSON = json_decode($modulesJSON);
         $i=1;
+        // Loop through the modules.
         foreach ($modulesJSON as $module) {
             try {
                 // If enabled, load 'em up!
@@ -63,7 +64,8 @@ class App {
                 // On to the next one...
                 $i++;
             } catch(Exception) {
-                break;
+                // Oh dear... moving on.
+                $i++;
             }
         }
     }
