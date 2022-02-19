@@ -44,6 +44,6 @@ class App {
     public function __construct()
     {
         $this->settings = $this->Settings();
-        require_once 'Modules.php';
+        require_once 'Autoload.php';
     }
 }

@@ -1,0 +1,46 @@
+{
+  "1": {
+    "module": "/Authentication/PortalSSO.php",
+    "enabled": "false"
+  },
+  "2": {
+    "module": "/Database/PDODB.php",
+    "enabled": "false"
+  },
+  "3": {
+    "module": "/Database/PostgreSQL.php",
+    "enabled": "false"
+  },
+  "4": {
+    "module": "/Database/SQL.php",
+    "enabled": "false"
+  },
+  "5": {
+    "module": "/Email/PHPMail.php",
+    "enabled": "false"
+  },
+  "6": {
+    "module": "/Email/SMTP.php",
+    "enabled": "false"
+  },
+  "7": {
+    "module": "/ErrorHandler/ErrorHandler.php",
+    "enabled": "false"
+  },
+  "8": {
+    "module": "/ErrorHandler/WarningHandler.php",
+    "enabled": "false"
+  },
+  "9": {
+    "module": "/Router/Router.php",
+    "enabled": "false"
+  },
+  "10": {
+    "module": "/Security/Encryption.php",
+    "enabled": "false"
+  },
+  "11": {
+    "module": "/Security/Security.php",
+    "enabled": "false"
+  }
+}
