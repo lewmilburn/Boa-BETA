@@ -10,7 +10,7 @@ class PHPMail extends App
         parent::__construct();
     }
 
-    public function sendMail($to, $from, $subject, $message, $replyto = null, $cc = null, $bcc = null) {
+    public function sendMail(string $to, string $from, string $subject, string $message, string $replyto = null, string $cc = null, string $bcc = null) {
         // To send HTML mail, the Content-type header must be set
         $headers[] = 'MIME-Version: 1.0';
         $headers[] = 'Content-type: text/html; charset=iso-8859-1';
