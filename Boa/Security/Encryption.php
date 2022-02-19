@@ -2,7 +2,9 @@
 
 namespace Boa\Security;
 
-class Encryption extends Security
+use Boa\App;
+
+class Encryption extends App
 {
     public function hash_ip($ip): string
     {

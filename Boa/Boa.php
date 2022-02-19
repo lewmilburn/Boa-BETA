@@ -2,6 +2,8 @@
 
 namespace Boa;
 
+use Exception;
+
 class App {
 
     public array $settings;
@@ -44,6 +46,25 @@ class App {
     public function __construct()
     {
         $this->settings = $this->Settings();
-        require_once 'Autoload.php';
+        $this->Autoload();
+    }
+
+    public function Autoload() {
+        // Get modules list
+        $modulesJSON = file_get_contents(__DIR__.'/modules.json');
+        $modulesJSON = json_decode($modulesJSON);
+        $i=1;
+        foreach ($modulesJSON as $module) {
+            try {
+                // If enabled, load 'em up!
+                if ($module->enabled == 'true') {
+                    include __DIR__ . '/' . $module->module;
+                }
+                // On to the next one...
+                $i++;
+            } catch(Exception) {
+                break;
+            }
+        }
     }
 }
