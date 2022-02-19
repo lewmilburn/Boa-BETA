@@ -40,3 +40,6 @@ if ($settings['module_security']) {
 if ($settings['module_security_encryption']) {
     require_once __DIR__.'/Security/Encryption.php';
 }
+
+// To check if Boa is loading correctly, un-comment the line below.
+// echo '[BOA] Boa has loaded all enabled modules.';

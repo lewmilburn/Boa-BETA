@@ -1,9 +1,5 @@
 <?php
-include __DIR__.'/Boa/Boa.php';
 
-use Boa\App;
+require __DIR__.'/Boa/Boa.php';
 
-$boa = new App();
-
-global $settings;
-var_dump($settings);
+new Boa\App();
