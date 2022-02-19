@@ -7,7 +7,6 @@ use mysqli;
 
 class SQL extends App
 {
-
     /**
      * @var mysqli
      */
@@ -15,9 +14,14 @@ class SQL extends App
 
     public function __construct()
     {
+        // Construct parent class.
         parent::__construct();
+
+        // Connect to the database.
         global $settings;
         $this->connect = new mysqli($settings['db_hostname'], $settings['db_username'], $settings['db_password'], $settings['db_database'], $settings['db_port'], $settings['db_socket']);
+
+        // Return the conection.
         return $this->connect;
     }
 
@@ -31,19 +35,19 @@ class SQL extends App
 
         $result = $conn->query($string);
 
-        switch ($mode){
-            case 'NONE': return $result;
-            case 'ALL': return $result->fetch_all();
-            case 'ALL:ASSOC': return $result->fetch_all(MYSQLI_ASSOC);
-            case 'ALL:NUMERIC': return $result->fetch_all(MYSQLI_NUM);
-            case 'ALL:BOTH': return $result->fetch_all(MYSQLI_BOTH);
-            case 'ASSOC': return $result->fetch_assoc();
-            case 'ARRAY': return $result->fetch_array();
-            case 'OBJECT': return $result->fetch_object();
-            case 'NUMROWS': return $result->num_rows;
-        }
+        return match ($mode) {
+            'NONE' => $result,
+            'ALL' => $result->fetch_all(),
+            'ALL:ASSOC' => $result->fetch_all(MYSQLI_ASSOC),
+            'ALL:NUMERIC' => $result->fetch_all(MYSQLI_NUM),
+            'ALL:BOTH' => $result->fetch_all(MYSQLI_BOTH),
+            'ASSOC' => $result->fetch_assoc(),
+            'ARRAY' => $result->fetch_array(),
+            'OBJECT' => $result->fetch_object(),
+            'NUMROWS' => $result->num_rows,
+            default => '$mode defined incorrectly.',
+        };
 
-        return '$mode defined incorrectly.';
     }
 
     public function Escape($string): String {
