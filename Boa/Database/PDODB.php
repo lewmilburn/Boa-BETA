@@ -18,7 +18,9 @@ class PDODB extends App
         parent::__construct();
 
         // Connect to the database.
-        global $settings;
+        $Boa = new App();
+        $settings = $Boa->Settings();
+
         $dsn = "mysql:host=".$settings['db_hostname'].";dbname=".$settings['db_database'].";charset=".$settings['db_charset'];
         $this->pdodb = new PDO($dsn);
     }

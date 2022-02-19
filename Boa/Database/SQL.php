@@ -11,15 +11,17 @@ class SQL extends App
      * @var mysqli
      */
     private mysqli $connect;
+    public array $settings;
 
     public function __construct()
     {
         // Construct parent class.
         parent::__construct();
+        $Boa = new App();
+        $settings = $Boa->Settings();
 
         // Connect to the database.
-        global $settings;
-        $this->connect = new mysqli($settings['db_hostname'], $settings['db_username'], $settings['db_password'], $settings['db_database'], $settings['db_port'], $settings['db_socket']);
+        $this->connect = new mysqli($this->settings['db_hostname'], $this->settings['db_username'], $this->settings['db_password'], $this->settings['db_database'], $this->settings['db_port'], $this->settings['db_socket']);
 
         // Return the conection.
         return $this->connect;
@@ -28,8 +30,7 @@ class SQL extends App
     public function Query($string, $mode = 'NONE') {
         $conn = $this->connect;
 
-        global $settings;
-        if ($settings['db_security']) {
+        if ($this->settings['db_security']) {
             $string = $this->Escape($string);
         }
 
