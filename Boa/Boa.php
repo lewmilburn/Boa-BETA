@@ -7,10 +7,17 @@ class App {
     public function __construct()
     {
         $settings = $this->config();
+        require_once 'Modules.php';
     }
 
     public function config(): array {
         return array (
+            // Enabled modules
+            'module_database_postgresql' => true,
+            'module_database_sql' => true,
+            'module_router' => true,
+            'module_security' => true,
+            'module_security_encryption' => true,
             // Database Settings
             'db_hostname' => '',
             'db_username' => '',
