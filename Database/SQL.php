@@ -34,14 +34,13 @@ class SQL extends App
         return $this->connect;
     }
 
-    public function Query($string, $mode = 'NONE') {
-        $conn = $this->connect;
-
+    public function Query($query, $mode = 'NONE') {
         if ($this->settings['database_security']) {
-            $string = $this->Escape($string);
+            $string = $this->Escape($query);
         }
 
-        $result = $conn->query($string);
+        $conn = $this->connect;
+        $result = $conn->query($query);
 
         return match ($mode) {
             'NONE' => $result,
@@ -58,13 +57,14 @@ class SQL extends App
 
     }
 
-    public function Select($select, $table, $mode) {
+    public function Select($select, $table, $mode = 'NONE') {
         if ($this->settings['database_security']) {
             $select = $this->Escape($select);
             $table = $this->Escape($table);
         }
 
-        $result = $this->query("SELECT '$select' FROM '$table';");
+        $conn = $this->connect;
+        $result = $conn->query("SELECT '$select' FROM '$table';");
 
         return match ($mode) {
             'NONE' => $result,
@@ -86,7 +86,8 @@ class SQL extends App
             $values = $this->Escape($values);
         }
 
-        return $this->query("INSERT INTO '$into' VALUES ($values);");
+        $conn = $this->connect;
+        return $conn->query("INSERT INTO '$into' VALUES ($values);");
     }
 
     public function Update($table, $set, $where) {
@@ -95,7 +96,8 @@ class SQL extends App
             $where = $this->Escape($where);
         }
 
-        return $this->query("UPDATE '$table' SET $set WHERE $where;");
+        $conn = $this->connect;
+        return $conn->query("UPDATE '$table' SET $set WHERE $where;");
     }
 
     public function Delete($table, $where) {
@@ -104,7 +106,8 @@ class SQL extends App
             $where = $this->Escape($where);
         }
 
-        return $this->query("DELETE FROM '$table' WHERE $where;");
+        $conn = $this->connect;
+        return $conn->query("DELETE FROM '$table' WHERE $where;");
     }
 
     public function Escape($string): String {
