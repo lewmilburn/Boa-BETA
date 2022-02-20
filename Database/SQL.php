@@ -23,7 +23,7 @@ class SQL extends App
         // Connect to the database.
         $this->connect = new mysqli($this->settings['database_hostname'], $this->settings['database_username'], $this->settings['database_password'], $this->settings['database_database'], $this->settings['database_port'], $this->settings['database_socket']);
 
-        // Return the conection.
+        // Return the connection.
         return $this->connect;
     }
 
