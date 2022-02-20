@@ -1,10 +1,10 @@
 <?php
-require __DIR__.'/Boa/Boa.php';
+require __DIR__ . '/Boa/Boa.php';
 $Boa = new Boa\App();
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Boa Demo Page</title>
+        <title>Boa</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/solid.min.css" integrity="sha512-6/gTF62BJ06BajySRzTm7i8N2ZZ6StspU9uVWDdoBiuuNu5rs1a8VwiJ7skCz2BcvhpipLKfFerXkuzs+npeKA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -28,7 +28,7 @@ $Boa = new Boa\App();
                     }
                 }
             ?>
-            <a href="Boa/modules.json" class="underline text-blue-500 hover:text-blue-300 transition duration-200">View modules file.</a>
+            <a href="modules.json" class="underline text-blue-500 hover:text-blue-300 transition duration-200">View modules file.</a>
         </div>
     </body>
 </html>

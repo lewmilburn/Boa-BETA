@@ -51,7 +51,7 @@ class App {
 
     public function Autoload() {
         // Get modules list
-        $modulesJSON = file_get_contents(__DIR__.'/modules.json');
+        $modulesJSON = file_get_contents(__DIR__ . '/modules.json');
         $modulesJSON = json_decode($modulesJSON);
         $i=1;
         // Loop through the modules.
@@ -59,7 +59,7 @@ class App {
             try {
                 // If enabled, load 'em up!
                 if ($module->enabled == 'true') {
-                    include __DIR__ . '/' . $module->module;
+                    include __DIR__ . 'Boa.php/' . $module->module;
                 }
                 // On to the next one...
                 $i++;
@@ -71,7 +71,7 @@ class App {
     }
 
     public function Modules() {
-        $modulesJSON = file_get_contents(__DIR__.'/modules.json');
+        $modulesJSON = file_get_contents(__DIR__ . '/modules.json');
         return json_decode($modulesJSON);
     }
 }
