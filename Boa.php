@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Boa - The simple, fast and reliable PHP Framework.
+ * @author      Lewis Milburn <contact@lewismilburn.com>
+ * @license     Apache-2.0 License
+ */
+
 namespace Boa;
 
 use Exception;

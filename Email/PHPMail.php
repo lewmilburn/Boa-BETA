@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Boa PHPMail Library
+ * @author      Lewis Milburn <contact@lewismilburn.com>
+ * @license     Apache-2.0 License
+ */
+
 namespace Boa\Email;
 
 use Boa\App;

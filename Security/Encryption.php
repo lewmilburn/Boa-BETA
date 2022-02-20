@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Boa Encryption Library
+ * @author      Lewis Milburn <contact@lewismilburn.com>
+ * @license     Apache-2.0 License
+ */
+
 namespace Boa\Security;
 
 use Boa\App;

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Boa Warning Handler Library
+ * @author      Lewis Milburn <contact@lewismilburn.com>
+ * @license     Apache-2.0 License
+ */
+
 namespace Boa\ErrorHandler;
 
 use Boa\App;

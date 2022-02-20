@@ -1,4 +1,11 @@
 <?php
+
+/**
+ * Boa Demo Application
+ * @author      Lewis Milburn <contact@lewismilburn.com>
+ * @license     Apache-2.0 License
+ */
+
 require __DIR__ . '/Boa.php';
 $Boa = new Boa\App();
 ?><!DOCTYPE html>
