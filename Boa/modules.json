@@ -1,7 +1,7 @@
 {
   "1": {
     "module": "/Authentication/PortalSSO.php",
-    "enabled": "true"
+    "enabled": "false"
   },
   "2": {
     "module": "/Database/PDODB.php",

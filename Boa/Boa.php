@@ -69,4 +69,9 @@ class App {
             }
         }
     }
+
+    public function Modules() {
+        $modulesJSON = file_get_contents(__DIR__.'/modules.json');
+        return json_decode($modulesJSON);
+    }
 }
