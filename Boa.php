@@ -59,7 +59,7 @@ class App {
             try {
                 // If enabled, load 'em up!
                 if ($module->enabled == 'true') {
-                    include __DIR__ . 'Boa.php/' . $module->module;
+                    include __DIR__ . '/' . $module->module;
                 }
                 // On to the next one...
                 $i++;

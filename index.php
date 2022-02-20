@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/Boa/Boa.php';
+require __DIR__ . '/Boa.php';
 $Boa = new Boa\App();
 ?><!DOCTYPE html>
 <html lang="en">
