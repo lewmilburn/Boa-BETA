@@ -12,6 +12,16 @@ use Boa\App;
 
 class Encryption extends App
 {
+    public array $settings;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        global $settings;
+        $settings = parent::Settings();
+    }
+
     public function hash_ip($ip): string
     {
         global $settings;

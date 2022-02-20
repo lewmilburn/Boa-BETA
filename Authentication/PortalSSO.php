@@ -12,10 +12,12 @@ use Boa\App;
 
 class PortalSSO extends App
 {
+    public array $settings;
+
     public function __construct() {
         parent::__construct();
-        $Boa = new App();
-        $settings = $Boa->Settings();
+        global $settings;
+        $settings = parent::Settings();
     }
 
     public function Authenticate() {

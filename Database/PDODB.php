@@ -17,16 +17,16 @@ class PDODB extends App
      * @var PDO
      */
     private PDO $pdodb;
+    public array $settings;
 
     public function __construct()
     {
         // Construct parent class.
         parent::__construct();
+        global $settings;
+        $settings = parent::Settings();
 
         // Connect to the database.
-        $Boa = new App();
-        $settings = $Boa->Settings();
-
         $dsn = "mysql:host=".$settings['database_hostname'].";dbname=".$settings['database_database'].";charset=".$settings['database_charset'];
         $this->pdodb = new PDO($dsn);
     }

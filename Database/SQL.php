@@ -23,8 +23,9 @@ class SQL extends App
     {
         // Construct parent class.
         parent::__construct();
-        $Boa = new App();
-        $settings = $Boa->Settings();
+
+        global $settings;
+        $settings = parent::Settings();
 
         // Connect to the database.
         $this->connect = new mysqli($this->settings['database_hostname'], $this->settings['database_username'], $this->settings['database_password'], $this->settings['database_database'], $this->settings['database_port'], $this->settings['database_socket']);
