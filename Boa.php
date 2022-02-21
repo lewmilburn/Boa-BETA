@@ -16,16 +16,6 @@ class App {
 
     public function Settings(): array {
         return array (
-            // Enabled modules
-            'module_authentication_portal' => false,
-            'module_database_pdo' => false,
-            'module_database_postgresql' => false,
-            'module_database_sql' => false,
-            'module_email_phpmail' => false,
-            'module_email_smtp' => false,
-            'module_router' => false,
-            'module_security' => false,
-            'module_security_encryption' => false,
             // Database Settings
             'database_driver' => '',
             'database_hostname' => '',
