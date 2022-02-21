@@ -23,8 +23,20 @@ class PDODB extends App
     {
         // Construct parent class.
         parent::__construct();
+
+        // Settings
         global $settings;
-        $settings = parent::Settings();
+        $settings =  array (
+            'database_driver' => '',
+            'database_hostname' => '',
+            'database_username' => '',
+            'database_password' => '',
+            'database_database' => '',
+            'database_charset' => '',
+            'database_port' => NULL,
+            'database_socket' => NULL,
+            'database_security' => true,
+        );
 
         // Connect to the database.
         $dsn = "mysql:host=".$settings['database_hostname'].";dbname=".$settings['database_database'].";charset=".$settings['database_charset'];

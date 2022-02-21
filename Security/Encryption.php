@@ -19,7 +19,11 @@ class Encryption extends App
         parent::__construct();
 
         global $settings;
-        $settings = parent::Settings();
+        $settings = array(
+            'password_hash' => 'PASSWORD_DEFAULT',
+            'ip_hash' => 'sha3-512',
+            'other_hash' => 'sha3-512',
+        );
     }
 
     public function hash_ip($ip): string

@@ -17,7 +17,11 @@ class PortalSSO extends App
     public function __construct() {
         parent::__construct();
         global $settings;
-        $settings = parent::Settings();
+        $settings = array(
+            'portal_redirect_url' => '',
+            'portal_permissions' => '',
+            'portal_secret' => 'LMWN_PORTAL_USER'
+        );
     }
 
     public function Login(): bool

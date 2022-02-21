@@ -25,7 +25,18 @@ class SQL extends App
         parent::__construct();
 
         global $settings;
-        $settings = parent::Settings();
+        // Settings
+        $settings =  array (
+            'database_driver' => '',
+            'database_hostname' => '',
+            'database_username' => '',
+            'database_password' => '',
+            'database_database' => '',
+            'database_charset' => '',
+            'database_port' => NULL,
+            'database_socket' => NULL,
+            'database_security' => true,
+        );
 
         // Connect to the database.
         $this->connect = new mysqli($this->settings['database_hostname'], $this->settings['database_username'], $this->settings['database_password'], $this->settings['database_database'], $this->settings['database_port'], $this->settings['database_socket']);

@@ -16,30 +16,10 @@ class App {
 
     public function Settings(): array {
         return array (
-            // Database Settings
-            'database_driver' => '',
-            'database_hostname' => '',
-            'database_username' => '',
-            'database_password' => '',
-            'database_database' => '',
-            'database_charset' => '',
-            'database_port' => NULL,
-            'database_socket' => NULL,
-            'database_security' => true,
-            // Security Settings
-            'password_hash' => 'PASSWORD_DEFAULT',
-            'ip_hash' => 'sha3-512',
-            'other_hash' => 'sha3-512',
-            // Email
-
             // Error Handling
             'show_warnings' => true,
             'show_errors' => true,
             'show_fatal_errors' => true,
-            // Portal
-            'portal_redirect_url' => '',
-            'portal_permissions' => '',
-            'portal_secret' => 'LMWN_PORTAL_USER'
         );
     }
 

@@ -11,5 +11,22 @@ use Boa\App;
 
 class PostgreSQL extends App
 {
+    public array $settings;
 
+    public function __construct()
+    {
+        global $settings;
+        // Settings
+        $settings =  array (
+            'database_driver' => '',
+            'database_hostname' => '',
+            'database_username' => '',
+            'database_password' => '',
+            'database_database' => '',
+            'database_charset' => '',
+            'database_port' => NULL,
+            'database_socket' => NULL,
+            'database_security' => true,
+        );
+    }
 }
