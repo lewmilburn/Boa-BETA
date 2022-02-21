@@ -21,7 +21,8 @@ class PortalSSO extends App
         $settings = parent::Settings();
     }
 
-    public function Login() {
+    public function Login(): bool
+    {
         global $settings, $secret;
         $token = $_GET['token'];
         $sig = $_GET['sig'];
@@ -30,18 +31,19 @@ class PortalSSO extends App
             $algorithm = file_get_contents('https://portal.lmwn.co.uk/assets/common/ptkhash.txt');
             if (hash_equals(hash_hmac($algorithm, $token, $secret), $sig)) {
                 $_SESSION['token'] = $token;
+                return true;
             } else {
-                echo 'TOKEN NOT FOUND The authentication token is invalid.';
                 header('Location: https://portal.lmwn.co.uk/authenticate/?redirect_url='.$settings['portal_redirect_url'].'&permissions='.$settings['portal_permissions']);
+                return false;
             }
-
         } else {
-            echo 'TOKEN NOT FOUND No token was passed, please log in.';
             header('Location: https://portal.lmwn.co.uk/authenticate/?redirect_url='.$settings['portal_redirect_url'].'&permissions='.$settings['portal_permissions']);
+            return false;
         }
     }
 
-    private function Authenticate() {
+    private function Authenticate(): bool|string
+    {
         if($_SESSION['token']) {
             $url = "https://portal.lmwn.co.uk/authenticate/authservice.php?token=".$_SESSION['token'];
 
@@ -59,7 +61,8 @@ class PortalSSO extends App
         }
     }
 
-    private function RequestData($url, $method = "GET", $postdata = null){
+    private function RequestData($url, $method = "GET", $postdata = null): bool|string
+    {
         $ch = curl_init($url);
 
         $headers = array(
