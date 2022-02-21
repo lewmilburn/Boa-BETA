@@ -8,10 +8,16 @@
 
 namespace Boa\ErrorHandler;
 
-class ErrorHandler
+use Boa\App;
+
+class ErrorHandler extends App
 {
+    public array $settings;
+
     public function Error($message) {
-        global $settings;
+        parent::__construct();
+
+        $settings = parent::Settings();
 
         if($settings['show_errors']) {
             echo '[BOA > Error]: ' . $message;
