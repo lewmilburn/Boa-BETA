@@ -41,6 +41,24 @@ class PortalSSO extends App
         }
     }
 
+    private function Authenticate() {
+        if($_SESSION['token']) {
+            $url = "https://portal.lmwn.co.uk/authenticate/authservice.php?token=".$_SESSION['token'];
+
+            $response = json_decode($this->RequestData($url, "GET"));
+            $user = $response->data;
+
+            if ($response->code != 200) {
+                unset($_SESSION['token']);
+                return false;
+            } else {
+                return $user;
+            }
+        } else {
+            return false;
+        }
+    }
+
     private function RequestData($url, $method = "GET", $postdata = null){
         $ch = curl_init($url);
 
@@ -69,23 +87,5 @@ class PortalSSO extends App
         curl_close($ch);
 
         return $output;
-    }
-
-    private function Authenticate() {
-        if($_SESSION['token']) {
-            $url = "https://portal.lmwn.co.uk/authenticate/authservice.php?token=".$_SESSION['token'];
-
-            $response = json_decode($this->RequestData($url, "GET"));
-            $user = $response->data;
-
-            if ($response->code != 200) {
-                unset($_SESSION['token']);
-                return false;
-            } else {
-                return $user;
-            }
-        } else {
-            return false;
-        }
     }
 }
