@@ -45,7 +45,11 @@ class App {
             // Error Handling
             'show_warnings' => true,
             'show_errors' => true,
-            'show_fatal_errors' => true
+            'show_fatal_errors' => true,
+            // Portal
+            'portal_redirect_url' => '',
+            'portal_permissions' => '',
+            'portal_secret' => 'LMWN_PORTAL_USER'
         );
     }
 

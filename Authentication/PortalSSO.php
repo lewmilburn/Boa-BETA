@@ -13,7 +13,6 @@ use Boa\App;
 class PortalSSO extends App
 {
     public array $settings;
-    public string $secret = 'LMWN_PORTAL_USER';
 
     public function __construct() {
         parent::__construct();
@@ -23,13 +22,13 @@ class PortalSSO extends App
 
     public function Login(): bool
     {
-        global $settings, $secret;
+        global $settings;
         $token = $_GET['token'];
         $sig = $_GET['sig'];
         if(!empty($token) && !$_SESSION['token'])
         {
             $algorithm = file_get_contents('https://portal.lmwn.co.uk/assets/common/ptkhash.txt');
-            if (hash_equals(hash_hmac($algorithm, $token, $secret), $sig)) {
+            if (hash_equals(hash_hmac($algorithm, $token, $settings['portal_secret']), $sig)) {
                 $_SESSION['token'] = $token;
                 return true;
             } else {
