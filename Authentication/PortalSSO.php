@@ -24,6 +24,9 @@ class PortalSSO extends App
         );
     }
 
+    /**
+     * @return bool Returns true/false, the status of the login.
+     */
     public function Login(): bool
     {
         global $settings;
@@ -45,6 +48,9 @@ class PortalSSO extends App
         }
     }
 
+    /**
+     * @return bool|string Returns false or the user's information.
+     */
     private function Authenticate(): bool|string
     {
         if($_SESSION['token']) {
@@ -64,6 +70,12 @@ class PortalSSO extends App
         }
     }
 
+    /**
+     * @param $url "The URL data should be requested from."
+     * @param $method "The method that should be used. Default: 'GET'"
+     * @param $postdata "The post data that should be used. Default: null"
+     * @return bool|string "Returns false or the data response."
+     */
     private function RequestData($url, $method = "GET", $postdata = null): bool|string
     {
         $ch = curl_init($url);
