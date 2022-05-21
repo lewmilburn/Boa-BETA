@@ -56,7 +56,7 @@ class PortalSSO extends App
         if($_SESSION['token']) {
             $url = "https://portal.lmwn.co.uk/authenticate/authservice.php?token=".$_SESSION['token'];
 
-            $response = json_decode($this->RequestData($url, "GET"));
+            $response = json_decode($this->RequestData($url));
             $user = $response->data;
 
             if ($response->code != 200) {
@@ -72,11 +72,11 @@ class PortalSSO extends App
 
     /**
      * @param $url "The URL data should be requested from."
-     * @param $method "The method that should be used. Default: 'GET'"
+     * @param string $method "The method that should be used. Default: 'GET'"
      * @param $postdata "The post data that should be used. Default: null"
      * @return bool|string "Returns false or the data response."
      */
-    private function RequestData($url, $method = "GET", $postdata = null): bool|string
+    private function RequestData($url, string $method = "GET", $postdata = null): bool|string
     {
         $ch = curl_init($url);
 

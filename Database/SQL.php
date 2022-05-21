@@ -10,6 +10,7 @@ namespace Boa\Database;
 
 use Boa\App;
 use mysqli;
+use mysqli_result;
 
 class SQL extends App
 {
@@ -24,14 +25,13 @@ class SQL extends App
         // Construct parent class.
         parent::__construct();
 
-        global $settings;
         // Settings
-        $settings =  array (
+        $this->settings = array (
             'database_driver' => '',
-            'database_hostname' => '',
-            'database_username' => '',
+            'database_hostname' => 'localhost',
+            'database_username' => 'root',
             'database_password' => '',
-            'database_database' => '',
+            'database_database' => 'feedback',
             'database_charset' => '',
             'database_port' => NULL,
             'database_socket' => NULL,
@@ -91,7 +91,8 @@ class SQL extends App
         };
     }
 
-    public function Insert($into, $values) {
+    public function Insert($into, $values): mysqli_result|bool
+    {
         if ($this->settings['database_security']) {
             $into = $this->Escape($into);
             $values = $this->Escape($values);
@@ -101,7 +102,8 @@ class SQL extends App
         return $conn->query("INSERT INTO '$into' VALUES ($values);");
     }
 
-    public function Update($table, $set, $where) {
+    public function Update($table, $set, $where): mysqli_result|bool
+    {
         if ($this->settings['database_security']) {
             $table = $this->Escape($table);
             $where = $this->Escape($where);
@@ -111,7 +113,8 @@ class SQL extends App
         return $conn->query("UPDATE '$table' SET $set WHERE $where;");
     }
 
-    public function Delete($table, $where) {
+    public function Delete($table, $where): mysqli_result|bool
+    {
         if ($this->settings['database_security']) {
             $table = $this->Escape($table);
             $where = $this->Escape($where);

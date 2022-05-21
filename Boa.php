@@ -29,7 +29,8 @@ class App {
         $this->Autoload(); // Register modules
     }
 
-    public function Autoload() {
+    public function Autoload(): void
+    {
         // Get modules list
         $modulesJSON = file_get_contents(__DIR__ . '/modules.json');
         $modulesJSON = json_decode($modulesJSON);
@@ -39,7 +40,7 @@ class App {
             try {
                 // If enabled, load 'em up!
                 if ($module->enabled == 'true') {
-                    include __DIR__ . '/' . $module->module;
+                    require_once __DIR__ . '/' . $module->module;
                 }
                 // On to the next one...
                 $i++;
@@ -50,7 +51,8 @@ class App {
         }
     }
 
-    public function Modules() {
+    public function Modules(): mixed
+    {
         $modulesJSON = file_get_contents(__DIR__ . '/modules.json');
         return json_decode($modulesJSON);
     }
