@@ -40,12 +40,12 @@ class Router
     /**
      * @var string Current base route, used for (sub)route mounting
      */
-    private string $baseRoute = '';
+    private string $baseRoute = '/feedback/';
 
     /**
      * @var string The Server Base Path for Router Execution
      */
-    private string $serverBasePath;
+    private string $serverBasePath = '';
 
     /**
      * @var string Default Controllers Namespace

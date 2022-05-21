@@ -68,14 +68,14 @@ class SQL extends App
 
     }
 
-    public function Select($select, $table, $mode = 'NONE') {
+    public function Select($select, $from, $where = '1', $mode = 'NONE') {
         if ($this->settings['database_security']) {
             $select = $this->Escape($select);
-            $table = $this->Escape($table);
+            $from = $this->Escape($from);
         }
 
         $conn = $this->connect;
-        $result = $conn->query("SELECT '$select' FROM '$table';");
+        $result = $conn->query("SELECT `$select` FROM `$from` WHERE $where;");
 
         return match ($mode) {
             'NONE' => $result,
