@@ -91,15 +91,16 @@ class SQL extends App
         };
     }
 
-    public function Insert($into, $values): mysqli_result|bool
+    public function Insert($table, $items, $values): mysqli_result|bool
     {
         if ($this->settings['database_security']) {
-            $into = $this->Escape($into);
-            $values = $this->Escape($values);
+            $table = $this->Escape($table);
+            $items = $this->Escape($items);
+            //$values = $this->Escape($values);
         }
 
         $conn = $this->connect;
-        return $conn->query("INSERT INTO '$into' VALUES ($values);");
+        return $conn->query("INSERT INTO `$table` ($items) VALUES ($values);");
     }
 
     public function Update($table, $set, $where): mysqli_result|bool
