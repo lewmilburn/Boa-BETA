@@ -10,9 +10,17 @@ For example, if your PHP application had multiple calls to a database, and you d
 But with Boa, we patch it once and your application receives the same patch everywhere.
 Your code is standardized and the same across the board, you don't have to waste time setting up the basics, and you don't have to worry about security or speed.
 
+## Issue Tracker & Suggestions
+Submit: https://feedback.lmwn.co.uk/software-feedback/?product=Bonfire
+
+Known issues: https://feedback.lmwn.co.uk/bonfire/reports
+
+Existing Suggestions: https://feedback.lmwn.co.uk/bonfire/suggestions
+
 ## System Requirements
 - PHP 8.0 or higher.
 
 ## Projects that use Boa
 - Pixelset (LMWNWeb/Pixelset)
 - WhatAccomm? (whataccomm.com)
+- Feedback (LMWNWeb/Feedback)
