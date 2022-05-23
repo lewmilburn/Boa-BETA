@@ -18,8 +18,8 @@ class PortalSSO extends App
         parent::__construct();
         global $settings;
         $settings = array(
-            'portal_redirect_url' => '',
-            'portal_permissions' => '',
+            'portal_redirect_url' => 'https://localhost/account/login',
+            'portal_permissions' => '110100000000011',
             'portal_secret' => 'LMWN_PORTAL_USER'
         );
     }
@@ -51,7 +51,7 @@ class PortalSSO extends App
     /**
      * @return bool|string Returns false or the user's information.
      */
-    private function Authenticate(): bool|string
+    public function Authenticate(): bool|string
     {
         if($_SESSION['token']) {
             $url = "https://portal.lmwn.co.uk/authenticate/authservice.php?token=".$_SESSION['token'];
