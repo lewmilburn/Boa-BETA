@@ -75,20 +75,26 @@ class SQL extends App
         }
 
         $conn = $this->connect;
-        $result = $conn->query("SELECT `$select` FROM `$from` WHERE $where;");
 
-        return match ($mode) {
-            'NONE' => $result,
-            'ALL' => $result->fetch_all(),
-            'ALL:ASSOC' => $result->fetch_all(MYSQLI_ASSOC),
-            'ALL:NUMERIC' => $result->fetch_all(MYSQLI_NUM),
-            'ALL:BOTH' => $result->fetch_all(MYSQLI_BOTH),
-            'ASSOC' => $result->fetch_assoc(),
-            'ARRAY' => $result->fetch_array(),
-            'OBJECT' => $result->fetch_object(),
-            'NUMROWS' => $result->num_rows,
-            default => '$mode defined incorrectly.',
-        };
+        if ($select != '*' && !str_contains($select, '`')) { $result = $conn->query("SELECT `$select` FROM `$from` WHERE $where;"); }
+        else { $result = $conn->query("SELECT $select FROM `$from` WHERE $where;"); }
+
+        if ($result->num_rows > 0) {
+            return match ($mode) {
+                'NONE' => $result,
+                'ALL' => $result->fetch_all(),
+                'ALL:ASSOC' => $result->fetch_all(MYSQLI_ASSOC),
+                'ALL:NUMERIC' => $result->fetch_all(MYSQLI_NUM),
+                'ALL:BOTH' => $result->fetch_all(MYSQLI_BOTH),
+                'ASSOC' => $result->fetch_assoc(),
+                'ARRAY' => $result->fetch_array(),
+                'OBJECT' => $result->fetch_object(),
+                'NUMROWS' => $result->num_rows,
+                default => 'Mode defined incorrectly.',
+            };
+        } else {
+            return null;
+        }
     }
 
     public function Insert($table, $items, $values): mysqli_result|bool
