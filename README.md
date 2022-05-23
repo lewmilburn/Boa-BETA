@@ -11,11 +11,11 @@ But with Boa, we patch it once and your application receives the same patch ever
 Your code is standardized and the same across the board, you don't have to waste time setting up the basics, and you don't have to worry about security or speed.
 
 ## Issue Tracker & Suggestions
-Submit: https://feedback.lmwn.co.uk/software-feedback/?product=Bonfire
+Submit: https://feedback.lmwn.co.uk/software-feedback/?product=Boa
 
-Known issues: https://feedback.lmwn.co.uk/bonfire/reports
+Known issues: https://feedback.lmwn.co.uk/boa/reports
 
-Existing Suggestions: https://feedback.lmwn.co.uk/bonfire/suggestions
+Existing Suggestions: https://feedback.lmwn.co.uk/boa/suggestions
 
 ## System Requirements
 - PHP 8.0 or higher.
