@@ -13,6 +13,7 @@ use Exception;
 class App {
 
     public array $settings;
+    private string $version = '1.0.0';
 
     public function Settings(): array {
         return array (
@@ -20,6 +21,7 @@ class App {
             'show_warnings' => true,
             'show_errors' => true,
             'show_fatal_errors' => true,
+            'update_check' => true,
         );
     }
 
@@ -55,5 +57,15 @@ class App {
     {
         $modulesJSON = file_get_contents(__DIR__ . '/modules.json');
         return json_decode($modulesJSON);
+    }
+
+    public function UpdateCheck(): bool
+    {
+        $latest = file_get_contents('https://lewismilburn.com/boa/version.txt');
+        if ($latest > $this->version) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

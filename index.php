@@ -21,6 +21,12 @@ $Boa = new Boa\App();
             <h1 class="text-4xl font-bold w-full text-center">Welcome to Boa!</h1>
             <p class="w-full text-center">The simple, fast and reliable PHP Framework.</p>
         </div>
+        <?php if ($Boa->UpdateCheck()) { ?>
+        <div class="w-full p-12">
+            <h1 class="text-2xl font-bold">Update</h1>
+            <p class="w-full">A new version of Boa is available to download.</p>
+        </div>
+        <?php } ?>
         <div class="w-full p-12">
             <h1 class="text-2xl font-bold">Installed Modules</h1>
             <p>Here's a list of all the installed modules in Boa. You can deactivate modules if you don't need them or delete them if you'd prefer, but don't forget to remove them from modules.json.</p>
