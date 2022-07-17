@@ -18,10 +18,10 @@ class App {
     public function Settings(): array {
         return array (
             // Error Handling
-            'show_warnings' => true,
-            'show_errors' => true,
-            'show_fatal_errors' => true,
-            'update_check' => true,
+            'show_warnings' => false,
+            'show_errors' => false,
+            'show_fatal_errors' => false,
+            'update_check' => false,
         );
     }
 
@@ -29,13 +29,16 @@ class App {
     {
         $this->settings = $this->Settings(); // Register settings
         $this->Autoload(); // Register modules
+
+        if ($this->settings['update_check'] && $this->settings['show_warnings'] && $this->UpdateCheck()) {
+            echo 'WARN: A new version of Boa can be downloaded. Visit https://github.com/lewmilburn/boa/releases for more information.';
+        }
     }
 
     public function Autoload(): void
     {
         // Get modules list
-        $modulesJSON = file_get_contents(__DIR__ . '/modules.json');
-        $modulesJSON = json_decode($modulesJSON);
+        $modulesJSON = $this->Modules();
         $i=1;
         // Loop through the modules.
         foreach ($modulesJSON as $module) {
@@ -53,8 +56,7 @@ class App {
         }
     }
 
-    public function Modules(): mixed
-    {
+    public function Modules() {
         $modulesJSON = file_get_contents(__DIR__ . '/modules.json');
         return json_decode($modulesJSON);
     }

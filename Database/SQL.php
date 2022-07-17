@@ -17,7 +17,7 @@ class SQL extends App
     /**
      * @var mysqli
      */
-    private mysqli $connect;
+    private mysqli $DBect;
     public array $settings;
 
     public function __construct()
@@ -27,12 +27,10 @@ class SQL extends App
 
         // Settings
         $this->settings = array (
-            'database_driver' => '',
             'database_hostname' => 'localhost',
             'database_username' => 'root',
             'database_password' => '',
             'database_database' => 'feedback',
-            'database_charset' => '',
             'database_port' => NULL,
             'database_socket' => NULL,
             'database_security' => true,
@@ -45,39 +43,11 @@ class SQL extends App
         return $this->connect;
     }
 
-    public function Query($query, $mode = 'NONE') {
-        if ($this->settings['database_security']) {
-            $string = $this->Escape($query);
-        }
-
-        $conn = $this->connect;
-        $result = $conn->query($query);
-
-        return match ($mode) {
-            'NONE' => $result,
-            'ALL' => $result->fetch_all(),
-            'ALL:ASSOC' => $result->fetch_all(MYSQLI_ASSOC),
-            'ALL:NUMERIC' => $result->fetch_all(MYSQLI_NUM),
-            'ALL:BOTH' => $result->fetch_all(MYSQLI_BOTH),
-            'ASSOC' => $result->fetch_assoc(),
-            'ARRAY' => $result->fetch_array(),
-            'OBJECT' => $result->fetch_object(),
-            'NUMROWS' => $result->num_rows,
-            default => '$mode defined incorrectly.',
-        };
-
-    }
-
     public function Select($select, $from, $where = '1', $mode = 'NONE') {
-        if ($this->settings['database_security']) {
-            $select = $this->Escape($select);
-            $from = $this->Escape($from);
-        }
+        $DB = $this->connect;
 
-        $conn = $this->connect;
-
-        if ($select != '*' && !str_contains($select, '`')) { $result = $conn->query("SELECT `$select` FROM `$from` WHERE $where;"); }
-        else { $result = $conn->query("SELECT $select FROM `$from` WHERE $where;"); }
+        if ($select != '*' && !str_contains($select, '`')) { $result = $DB->query("SELECT `$select` FROM `$from` WHERE $where;"); }
+        else { $result = $DB->query("SELECT $select FROM `$from` WHERE $where;"); }
 
         if ($result->num_rows > 0) {
             return match ($mode) {
@@ -99,39 +69,25 @@ class SQL extends App
 
     public function Insert($table, $items, $values): mysqli_result|bool
     {
-        if ($this->settings['database_security']) {
-            $table = $this->Escape($table);
-            $items = $this->Escape($items);
-            //$values = $this->Escape($values);
-        }
-
-        $conn = $this->connect;
-        return $conn->query("INSERT INTO `$table` ($items) VALUES ($values);");
+        $DB = $this->connect;
+        return $DB->query("INSERT INTO `$table` ($items) VALUES ($values);");
     }
 
     public function Update($table, $set, $where): mysqli_result|bool
     {
-        if ($this->settings['database_security']) {
-            $table = $this->Escape($table);
-            $where = $this->Escape($where);
-        }
-
-        $conn = $this->connect;
-        return $conn->query("UPDATE '$table' SET $set WHERE $where;");
+        $DB = $this->connect;
+        return $DB->query("UPDATE '$table' SET $set WHERE $where;");
     }
 
     public function Delete($table, $where): mysqli_result|bool
     {
-        if ($this->settings['database_security']) {
-            $table = $this->Escape($table);
-            $where = $this->Escape($where);
-        }
-
-        $conn = $this->connect;
-        return $conn->query("DELETE FROM '$table' WHERE $where;");
+        $DB = $this->connect;
+        return $DB->query("DELETE FROM '$table' WHERE $where;");
     }
 
-    public function Escape($string): String {
-        return $this->connect->escape_string($string);
+    public function Escape($data)
+    {
+        $DB = $this->connect;
+        return $DB->Escape($data);
     }
 }

@@ -4,43 +4,27 @@
     "enabled": true
   },
   "2": {
-    "module": "/Database/PDODB.php",
-    "enabled": false
-  },
-  "3": {
-    "module": "/Database/PostgreSQL.php",
-    "enabled": false
-  },
-  "4": {
     "module": "/Database/SQL.php",
     "enabled": true
   },
-  "5": {
+  "3": {
     "module": "/Email/PHPMail.php",
     "enabled": true
   },
-  "6": {
-    "module": "/Email/SMTP.php",
-    "enabled": false
-  },
-  "7": {
+  "4": {
     "module": "/ErrorHandler/ErrorHandler.php",
     "enabled": true
   },
-  "8": {
+  "5": {
     "module": "/ErrorHandler/WarningHandler.php",
     "enabled": true
   },
-  "9": {
+  "6": {
     "module": "/Router/Router.php",
     "enabled": true
   },
-  "10": {
+  "7": {
     "module": "/Security/Encryption.php",
-    "enabled": true
-  },
-  "11": {
-    "module": "/Security/Security.php",
     "enabled": true
   }
 }

@@ -17,9 +17,9 @@ class ErrorHandler extends App
     public function Error($message) {
         parent::__construct();
 
-        $settings = parent::Settings();
+        $this->settings = parent::Settings();
 
-        if($settings['show_errors']) {
+        if($this->settings['show_errors']) {
             echo '[BOA > Error]: ' . $message;
         }
     }
@@ -27,7 +27,7 @@ class ErrorHandler extends App
     public function ErrorFatal($message) {
         global $settings;
 
-        if($settings['show_fatal_errors']) {
+        if($this->settings['show_fatal_errors']) {
             echo '[BOA > Fatal Error]: ' . $message;
             exit;
         }
