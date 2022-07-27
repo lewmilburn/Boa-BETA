@@ -16,8 +16,8 @@ class PortalSSO extends App
 
     public function __construct() {
         parent::__construct();
-        global $settings;
-        $settings = array(
+
+        $this->settings = array(
             'portal_redirect_url' => 'https://localhost/account/login',
             'portal_permissions' => '110100000000011',
             'portal_secret' => 'LMWN_PORTAL_USER'
@@ -29,21 +29,20 @@ class PortalSSO extends App
      */
     public function Login(): bool
     {
-        global $settings;
         $token = $_GET['token'];
         $sig = $_GET['sig'];
         if(!empty($token) && !$_SESSION['token'])
         {
             $algorithm = file_get_contents('https://portal.lmwn.co.uk/assets/common/ptkhash.txt');
-            if (hash_equals(hash_hmac($algorithm, $token, $settings['portal_secret']), $sig)) {
+            if (hash_equals(hash_hmac($algorithm, $token, $this->settings['portal_secret']), $sig)) {
                 $_SESSION['token'] = $token;
                 return true;
             } else {
-                header('Location: https://portal.lmwn.co.uk/authenticate/?redirect_url='.$settings['portal_redirect_url'].'&permissions='.$settings['portal_permissions']);
+                header('Location: https://portal.lmwn.co.uk/authenticate/?redirect_url='.$this->settings['portal_redirect_url'].'&permissions='.$this->settings['portal_permissions']);
                 return false;
             }
         } else {
-            header('Location: https://portal.lmwn.co.uk/authenticate/?redirect_url='.$settings['portal_redirect_url'].'&permissions='.$settings['portal_permissions']);
+            header('Location: https://portal.lmwn.co.uk/authenticate/?redirect_url='.$this->settings['portal_redirect_url'].'&permissions='.$this->settings['portal_permissions']);
             return false;
         }
     }
