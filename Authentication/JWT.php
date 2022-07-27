@@ -18,6 +18,12 @@ class JWT extends App
     private string $key;
 
     /**
+     * The value of the 'iss' key.
+     * @var string
+     */
+    private string $issuer;
+
+    /**
      * Stores the type of JWT to be created. Usually 'JWT'.
      * @var string
      */
@@ -30,18 +36,38 @@ class JWT extends App
     private string $algorithm;
 
     /**
+     * The UNIX timestamp for a start time for the token.
+     * @var string
+     */
+    private string $starttime;
+
+    /**
      * Constructs the class.
      * @param string $key Your super-secret key.
+     * @param string $issuer
      * @param string $type The type of JWT (Optional - Doesn't change functionality)
      * @param string $algorithm The algorithm that will be used (Optional)
+     * @param int $starttime
      */
-    public function __construct(string $key, string $type = 'JWT', string $algorithm = 'HS512')
+    public function __construct(string $key,
+                                string $issuer,
+                                string $type = 'JWT',
+                                string $algorithm = 'HS512',
+                                int $starttime = 0)
     {
         parent::__construct();
 
         $this->key = $key;
+        $this->issuer = $issuer;
         $this->type = $type;
         $this->algorithm = $algorithm;
+        $this->starttime = $starttime;
+
+        if ($starttime < time()) {
+            $this->starttime = time();
+        } else {
+            $this->starttime = $starttime;
+        }
     }
 
     /**
@@ -65,7 +91,7 @@ class JWT extends App
      */
     private function GenerateHeader(): string
     {
-        $header = '{"alg": "'.$this->algorithm.'", "typ": "'.$this->type.'"}';
+        $header = '{"alg": "'.$this->algorithm.'", "typ": "'.$this->type.'", "iat": "'.time().'", "nbf": "'.$this->starttime.'", "iss": "'.$this->issuer.'"}';
 
         return $this->EncodeData($header);
     }
