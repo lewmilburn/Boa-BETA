@@ -13,7 +13,7 @@ use Exception;
 class App {
 
     public array $settings;
-    private string $version = '1.1.0';
+    private string $version = '1.0.0';
 
     public function Settings(): array {
         return array (
