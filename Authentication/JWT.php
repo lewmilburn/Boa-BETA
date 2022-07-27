@@ -31,9 +31,9 @@ class JWT extends App
 
     /**
      * Constructs the class.
-     * @param string $key
-     * @param string $type
-     * @param string $algorithm
+     * @param string $key Your super-secret key.
+     * @param string $type The type of JWT (Optional - Doesn't change functionality)
+     * @param string $algorithm The algorithm that will be used (Optional)
      */
     public function __construct(string $key, string $type = 'JWT', string $algorithm = 'HS512')
     {
@@ -82,19 +82,17 @@ class JWT extends App
 
     /**
      * Generates the signature part of the token.
-     * @param string $header
-     * @param string $payload
+     * @param string $EncodedHeader
+     * @param string $EncodedPayload
      * @return string
      */
-    private function GenerateSignature(string $header, string $payload): string {
-        $algorithm = match ($this->algorithm) {
-            'HS256' => 'sha256',
-            default => 'sha512'
-        };
+    private function GenerateSignature(string $EncodedHeader, string $EncodedPayload): string {
+        $algorithm = $this->GetAlgorithm();
 
-        $data = $header . '.' . $payload;
-
-        return hash_hmac($algorithm, $data, $this->key);
+        $data = $EncodedHeader . '.' . $EncodedPayload;
+        $sig = hash_hmac($algorithm, $data, $this->key);
+        var_dump($data,$sig);
+        return $sig;
     }
 
     /**
@@ -104,10 +102,7 @@ class JWT extends App
      */
     public function Validate(string $token): bool
     {
-        $algorithm = match ($this->algorithm) {
-            'HS256' => 'sha256',
-            default => 'sha512'
-        };
+        $algorithm = $this->GetAlgorithm();
 
         $Token = explode('.', $token);
 
@@ -128,21 +123,6 @@ class JWT extends App
     }
 
     /**
-     * Encode data to Base64URL
-     * @param string $data
-     * @return boolean|string
-     */
-    private function EncodeData(string $data): bool|string
-    {
-        $b64 = base64_encode($data);
-        if (!$b64) {
-            return false;
-        }
-        $url = strtr($b64, '+/', '-_');
-        return rtrim($url, '=');
-    }
-
-    /**
      * Fetches the data within a token.
      * @param string $token
      * @return array
@@ -158,6 +138,21 @@ class JWT extends App
     }
 
     /**
+     * Encode data to Base64URL
+     * @param string $data
+     * @return boolean|string
+     */
+    private function EncodeData(string $data): bool|string
+    {
+        $b64 = base64_encode(trim($data));
+        if (!$b64) {
+            return false;
+        }
+        $url = strtr($b64, '+/', '-_');
+        return rtrim($url, '=');
+    }
+
+    /**
      * Decode data from Base64URL
      * @param string $data
      * @param boolean $strict
@@ -167,5 +162,18 @@ class JWT extends App
     {
         $b64 = strtr($data, '-_', '+/');
         return base64_decode($b64, $strict);
+    }
+
+    /**
+     * Returns the PHP equivalent to the algorithm
+     * @return string
+     */
+    private function GetAlgorithm(): string
+    {
+        return match ($this->algorithm) {
+            'HS256' => 'sha256',
+            'HS384' => 'sha384',
+            default => 'sha512'
+        };
     }
 }
