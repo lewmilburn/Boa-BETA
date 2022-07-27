@@ -7,7 +7,7 @@
   "2": {
     "module": "/Authentication/JWT.php",
     "enabled": true,
-    "requires": ["/Security/Encryption.php"]
+    "requires": null
   },
   "3": {
     "module": "/Database/SQL.php",
