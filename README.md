@@ -36,4 +36,4 @@ Existing Suggestions: https://feedback.lmwn.co.uk/boa/suggestions
 - Feedback (LMWNWeb/Feedback)
 
 ## Software included in Boa
-- bramus/router (https://github.com/bramus/router)
+- bramus/router (https://github.com/bramus/router) - MIT License
