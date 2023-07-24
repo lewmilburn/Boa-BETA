@@ -1,3 +1,5 @@
+> This is an archive of my initial version of Boa (A kinda beta-test of it). Boa has now released and has a new home at https://github.com/pixelsetdev/boa
+
 # Boa
 Boa is the simple, fast and reliable PHP Framework. It's a lightweight PHP Library that's focused on being easy to learn and use, safe and secure, and incredibly reliable.
 Boa is only 34kB in size, making it one of the smallest PHP Libraries in existence.
